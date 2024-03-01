@@ -11,7 +11,7 @@
 <div class="container my-3">
     <h2 class="text-center">Регистрация на сайте</h2>
     <div class="col-sm-6 mx-auto">
-        <form action="/reg" method="post">
+        <form action="/regUser" method="post">
             <div class="mb-3">
                 <label>Имя</label>
                 <input name="name" type="text" placeholder="Имя" class="form-control">
@@ -23,6 +23,7 @@
             <div class="mb-3">
                 <label>E-mail</label>
                 <input name="email" type="email" placeholder="E-mail" class="form-control">
+                <p th:if="${error}" th:text="'Такой пользователь уже существует'" class="text-danger"></p>
             </div>
             <div class="mb-3">
                 <label>Пароль</label>
