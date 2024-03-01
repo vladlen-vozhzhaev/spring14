@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+    <style>
+      #plane{
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <!--<img  id="plane" src="C:\Users\MateBook\Desktop\plane.png" alt="" width="200px">-->
+    <h1 id="title"></h1>
+    <p id="content"></p>
+    <p id="author"></p>
+    <script>
+      // Статья из базы данных
+      const article = {
+        "title": "Статья 1",
+        "content": "Крутая статья",
+        "author": "ivan@mail.ru"
+      }
+      // Обращаемся к тегам
+      const title = document.getElementById("title");
+      const content = document.getElementById("content");
+      const author = document.getElementById("author");
+      // Пишем в теги
+      title.innerText = article.title;
+      content.innerText = article.content;
+      author.innerText = article.author;
+      console.log(article);
+      /*
+      const plane = document.getElementById("plane");
+      let i = 0;
+      setInterval(()=>{
+        plane.style.left = (i++)+"px";
+      }, 30);
+      */
+    </script>
+  </body>
+</html>
