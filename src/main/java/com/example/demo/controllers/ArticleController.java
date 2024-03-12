@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.model.Article;
 import com.example.demo.repo.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +25,11 @@ public class ArticleController {
     }
     @GetMapping("/")
     public String mainPage(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = (authentication.getName());
         Iterable<Article> articles = articleRepo.findAll();
         model.addAttribute("articles", articles);
+        model.addAttribute("email", userEmail);
         return "index";
     }
     @GetMapping("/blog/{id}")
@@ -34,7 +39,10 @@ public class ArticleController {
         return "article";
     }
     @GetMapping("/addArticle")
-    public String addArticle(){
+    public String addArticle(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = (authentication.getName());
+        model.addAttribute("email", userEmail);
         return "addArticle";
     }
     @PostMapping("/addArticle")

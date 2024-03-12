@@ -8,6 +8,7 @@
     </head>
     <body>
         <nav th:insert="components/navbar :: navbar" class="navbar navbar-expand-lg bg-body-tertiary"></nav>
+        <p th:text="${email}"></p>
         <div class="container">
             <div th:each="article:${articles}">
                 <a th:href="'/blog/'+${article.id}">

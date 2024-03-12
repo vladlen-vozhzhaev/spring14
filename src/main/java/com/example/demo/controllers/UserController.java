@@ -5,6 +5,7 @@ import com.example.demo.repo.UserRepo;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,11 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     UserRepo userRepo;
+    @GetMapping("/user")
+    public String user(Authentication authentication){
+        System.out.println(authentication.getPrincipal());
+        return "user";
+    }
     @GetMapping("/reg")
     public String reg(@PathParam(value = "error") String error, Model model){
         System.out.println(error);
@@ -52,7 +58,7 @@ public class UserController {
         model.addAttribute("error", err);
         return "login";
     }
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(
             @RequestParam String email,
             @RequestParam String pass
@@ -65,5 +71,5 @@ public class UserController {
             System.out.println("Пользователь "+email+" авторизован");
             return "redirect:/";
         }
-    }
+    }*/
 }

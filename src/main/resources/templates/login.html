@@ -11,14 +11,14 @@
 <div class="container my-3">
     <h2 class="text-center">Авторизация на сайте</h2>
     <div class="col-sm-6 mx-auto">
-        <form action="/login" method="post">
+        <form th:action="@{/login}" method="post">
             <div class="mb-3">
                 <label>E-mail</label>
-                <input name="email" type="email" placeholder="E-mail" class="form-control">
+                <input name="username" type="email" placeholder="E-mail" class="form-control">
             </div>
             <div class="mb-3">
                 <label>Пароль</label>
-                <input name="pass" type="password" placeholder="Пароль" class="form-control">
+                <input name="password" type="password" placeholder="Пароль" class="form-control">
                 <p th:if="${error}" th:text="'Неправильный логин или пароль'" class="text-danger"></p>
             </div>
             <div class="mb-3">
