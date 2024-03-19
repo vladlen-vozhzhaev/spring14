@@ -1,7 +1,9 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Article;
+import com.example.demo.model.Comment;
 import com.example.demo.repo.ArticleRepo;
+import com.example.demo.repo.CommentRepo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +29,8 @@ public class ArticleController {
 
     @Autowired
     private ArticleRepo articleRepo;
+    @Autowired
+    private CommentRepo commentRepo;
     @GetMapping("/hello") // /hello?name=Ivan
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
@@ -43,6 +48,8 @@ public class ArticleController {
     public String showArticle(@PathVariable(value = "id") long id, Model model){
         Optional<Article> article = articleRepo.findById(id);
         model.addAttribute("article", article.get());
+        List<Comment> comments = commentRepo.findByArticleId(id);
+        model.addAttribute("comments", comments);
         return "article";
     }
     @GetMapping("/addArticle")

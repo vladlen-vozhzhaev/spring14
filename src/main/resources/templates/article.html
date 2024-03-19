@@ -47,6 +47,21 @@
                 <p th:text="${article.author}"></p>
             </div>
         </div>
+        <hr>
+        <h3>Комментарии</h3>
+        <form action="/addComment" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="hidden" name="article_id" th:value="${article.id}">
+            <div class="mb-3">
+                <textarea name="comment" class="form-control" placeholder="Комментарий"></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="form-control btn btn-primary">
+            </div>
+        </form>
+        <div th:each="comment:${comments}">
+            <p th:text="${comment.comment}"></p>
+        </div>
     </div>
 </article>
 <!-- Footer-->
