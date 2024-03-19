@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Article {
@@ -11,6 +9,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String title;
+    @Column(name="content", columnDefinition = "TEXT")
     public String content;
     public String author;
     public Article(){}
